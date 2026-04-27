@@ -69,6 +69,7 @@ export default function StudentLayout() {
       />
       <Tabs.Screen name="solve" options={{ href: null }} />
       <Tabs.Screen name="analytics" options={{ href: null }} />
+      <Tabs.Screen name="recommended-problems" options={{ href: null }} />
     </Tabs>
   );
 }

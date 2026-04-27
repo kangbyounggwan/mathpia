@@ -3,6 +3,7 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 import { Text, ActivityIndicator } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import {
   colors,
   spacing,
@@ -249,7 +250,7 @@ export default function StudentAnalyticsScreen() {
                     reason={wt.reason}
                     recommendedCount={wt.recommendedCount}
                     onPressRecommend={() => {
-                      // Navigate to recommended problems (future integration)
+                      router.push(`/(student)/recommended-problems?topic=${encodeURIComponent(wt.topic)}&score=${wt.score}`);
                     }}
                   />
                 ))}
@@ -319,7 +320,10 @@ export default function StudentAnalyticsScreen() {
           mode="contained"
           icon="lightning-bolt"
           onPress={() => {
-            // Navigate to recommended problem list (future integration)
+            const firstWeak = weaknessAnalysis?.weakTopics?.[0];
+            if (firstWeak) {
+              router.push(`/(student)/recommended-problems?topic=${encodeURIComponent(firstWeak.topic)}&score=${firstWeak.score}`);
+            }
           }}
           style={styles.recommendButton}
           fullWidth
